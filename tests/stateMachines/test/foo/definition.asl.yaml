@@ -1,0 +1,23 @@
+---
+StartAt: Function1
+States:
+  Function1:
+    Type: Task
+    Parameters:
+      AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_NAME.$: $$.Execution.Name
+      AWS_STEP_FUNCTIONS_STARTED.$: $$.Execution.Name
+    Resource: !GetAtt dummy.Arn
+    Next: Function2
+  Function2:
+    Type: Task
+    Parameters:
+      AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_NAME.$: $$.Execution.Name
+      AWS_STEP_FUNCTIONS_STARTED.$: $$.Execution.Name
+    Resource: !GetAtt dummy.Arn
+    Next: Pass
+  Pass:
+    Type: Pass
+    Result: "Hello, World!"
+    Next: IsFinal
+  IsFinal:
+    Type: Succeed

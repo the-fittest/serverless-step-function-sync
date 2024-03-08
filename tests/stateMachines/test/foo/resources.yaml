@@ -1,0 +1,64 @@
+---
+Resources:
+  FooStateMachineLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 14
+      LogGroupName: /aws/vendedlogs/states/fooStateMachineExecutionRole${opt:stage, 'dev'}
+
+  FooStateMachineExecutionRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: states.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: CloudWatchLogsDeliveryFullAccessPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogDelivery
+                  - logs:DeleteLogDelivery
+                  - logs:DescribeLogGroups
+                  - logs:DescribeResourcePolicies
+                  - logs:GetLogDelivery
+                  - logs:ListLogDeliveries
+                  - logs:PutResourcePolicy
+                  - logs:UpdateLogDelivery
+                Resource:
+                  - "*"
+        - PolicyName: XRayAccessPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - xray:GetSamplingRules
+                  - xray:GetSamplingTargets
+                  - xray:PutTelemetryRecords
+                  - xray:PutTraceSegments
+                Resource:
+                  - "*"
+        - PolicyName: LambdaAccessPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:InvokeFunction
+                Resource:
+                  - arn:aws:lambda:${aws:region}:${aws:accountId}:function:${self:service}-*
+        - PolicyName: SESPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sesv2:SendEmail
+                  - ses:SendTemplatedEmail
+                Resource:
+                  - arn:aws:ses:${aws:region}:${aws:accountId}:template/*
+                  - arn:aws:ses:${aws:region}:${aws:accountId}:identity/*
+                  - arn:aws:ses:${aws:region}:${aws:accountId}:configuration-set/*

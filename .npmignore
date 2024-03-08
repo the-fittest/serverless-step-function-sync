@@ -1,0 +1,12 @@
+tests
+.gitignore
+.nvmrc
+example.cjs
+example.mjs
+LICENSE
+.idea
+.eslintignore
+.eslintrc.js
+.editorconfig
+.prettierignore
+README.md

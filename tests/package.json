@@ -1,0 +1,16 @@
+{
+  "name": "test-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "package": "serverless package"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless": "^3.38.0",
+    "serverless-step-functions": "^3.19.0",
+    "serverless-better-credentials": "^2.0.0"
+  }
+}
