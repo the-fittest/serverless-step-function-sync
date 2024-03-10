@@ -14,6 +14,15 @@ States:
       AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_NAME.$: $$.Execution.Name
       AWS_STEP_FUNCTIONS_STARTED.$: $$.Execution.Name
     Resource: !GetAtt dummy.Arn
+    Next: RefTest
+  RefTest:
+    Type: Task
+    Resource: arn:aws:states:::states:startExecution
+    Parameters:
+      StateMachineArn: !Ref StepMachineOne
+      Input:
+        key1: value3
+        key2: value2
     Next: Pass
   Pass:
     Type: Pass
