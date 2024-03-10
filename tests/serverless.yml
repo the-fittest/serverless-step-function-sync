@@ -100,7 +100,7 @@ stepFunctions:
             Type: Succeed
 
     RangeStagingDataLoadStepFunction:
-      name: RangeStaginDataLoadStepFunction
+      name: RangeStagingDataLoadStepFunction
       id: RangeStagingDataLoadStepFunction
       definition:
         StartAt: Start Range Processing for Staging DB

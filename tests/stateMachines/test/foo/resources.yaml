@@ -4,7 +4,7 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       RetentionInDays: 14
-      LogGroupName: /aws/vendedlogs/states/fooStateMachineExecutionRole${opt:stage, 'dev'}
+      LogGroupName: /aws/vendedlogs/states/fooStateMachine${opt:stage, 'dev'}
 
   FooStateMachineExecutionRole:
     Type: 'AWS::IAM::Role'
@@ -50,15 +50,14 @@ Resources:
                 Action:
                   - lambda:InvokeFunction
                 Resource:
-                  - arn:aws:lambda:${aws:region}:${aws:accountId}:function:${self:service}-*
-        - PolicyName: SESPolicy
+                  - !GetAtt DummyLambdaFunction.Arn
+        - PolicyName: StepFunctionAccessPolicy
           PolicyDocument:
             Statement:
               - Effect: Allow
                 Action:
-                  - sesv2:SendEmail
-                  - ses:SendTemplatedEmail
+                  - states:StartExecution
+                  - states:DescribeExecution
+                  - states:StopExecution
                 Resource:
-                  - arn:aws:ses:${aws:region}:${aws:accountId}:template/*
-                  - arn:aws:ses:${aws:region}:${aws:accountId}:identity/*
-                  - arn:aws:ses:${aws:region}:${aws:accountId}:configuration-set/*
+                  - !Ref StepMachineOne
