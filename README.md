@@ -26,7 +26,7 @@ In your project root run:
 
 ## Credits and inspiration
 
-This plugin is based on the work of [notanmay](https://github.com/notanmay) and [jappurohit041](https://github.com/jappurohit041/) work at the awesome [serverless-step-functions](https://github.com/serverless-operations/serverless-step-functions).
+This plugin is based on the work of [notanmay](https://github.com/notanmay) and [jappurohit041](https://github.com/jappurohit041/) at the awesome [serverless-step-functions](https://github.com/serverless-operations/serverless-step-functions).
 
 ## License
 
