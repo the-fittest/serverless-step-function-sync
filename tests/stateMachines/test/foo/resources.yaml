@@ -1,5 +1,17 @@
 ---
 Resources:
+  TestTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: TestTable${opt:stage, 'dev'}
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
   FooStateMachineLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
@@ -50,7 +62,7 @@ Resources:
                 Action:
                   - lambda:InvokeFunction
                 Resource:
-                  - !GetAtt DummyLambdaFunction.Arn
+                  - "*"
         - PolicyName: StepFunctionAccessPolicy
           PolicyDocument:
             Statement:
@@ -61,3 +73,29 @@ Resources:
                   - states:StopExecution
                 Resource:
                   - !Ref StepMachineOne
+        - PolicyName: DynamoDbAccessPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:BatchGet*
+                  - dynamodb:DescribeTable
+                  - dynamodb:DescribeStream
+                  - dynamodb:Get*
+                  - dynamodb:Query
+                  - dynamodb:Scan
+                  - dynamodb:BatchWrite*
+                  - dynamodb:CreateTable
+                  - dynamodb:Delete*
+                  - dynamodb:Update*
+                  - dynamodb:PutItem
+                Resource:
+                  - !GetAtt TestTable.Arn
+
+Outputs:
+  TestTableName:
+    Value: !Ref TestTable
+
+  TestTableArn:
+    Value: !GetAtt TestTable.Arn
+

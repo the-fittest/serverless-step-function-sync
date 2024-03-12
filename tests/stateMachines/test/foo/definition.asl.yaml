@@ -23,6 +23,18 @@ States:
       Input:
         key1: value3
         key2: value2
+    Next: Get test
+  Get test:
+    Type: Task
+    Resource: arn:aws:states:::aws-sdk:dynamodb:query
+    Parameters:
+      TableName: !Ref TestTable
+      KeyConditionExpression: id = :id
+      ExpressionAttributeValues:
+        ":id":
+          S: "1234"
+      ConsistentRead: false
+    ResultPath: $.test
     Next: Pass
   Pass:
     Type: Pass
