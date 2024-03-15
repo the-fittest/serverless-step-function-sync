@@ -1,6 +1,6 @@
 {
   "name": "serverless-step-function-sync",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Syncing a single step function for development use only",
   "main": "lib/index.js",
   "scripts": {
@@ -28,7 +28,8 @@
     "@serverless/utils": "^6.15.0",
     "bluebird": "^3.7.2",
     "lodash": "^4.17.21",
-    "serverless-step-functions": "^3.20.1"
+    "serverless-step-functions": "^3.20.1",
+    "flattenjs": "^2.1.3"
   },
   "engines": {
     "node": ">=18.12.0"
@@ -44,7 +45,6 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-unicorn": "^51.0.1",
-    "flattenjs": "^2.1.3",
     "mocha": "10.3.0",
     "prettier": "^3.2.5",
     "serverless": "^3.38.0",
