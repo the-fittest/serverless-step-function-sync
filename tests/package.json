@@ -10,7 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "serverless": "^3.38.0",
-    "serverless-step-functions": "^3.19.0",
-    "serverless-better-credentials": "^2.0.0"
+    "serverless-better-credentials": "^2.0.0",
+    "serverless-step-functions": "^3.19.0"
   }
 }
