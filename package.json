@@ -1,6 +1,6 @@
 {
   "name": "serverless-step-function-sync",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Syncing a single step function for development use only",
   "main": "lib/index.js",
   "scripts": {

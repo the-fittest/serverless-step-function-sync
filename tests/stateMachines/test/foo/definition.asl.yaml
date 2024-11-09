@@ -32,7 +32,7 @@ States:
       KeyConditionExpression: id = :id
       ExpressionAttributeValues:
         ":id":
-          S: "1234"
+          S: "1235"
       ConsistentRead: false
     ResultPath: $.test
     Next: Pass
