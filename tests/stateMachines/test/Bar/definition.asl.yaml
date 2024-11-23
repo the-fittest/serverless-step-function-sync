@@ -1,0 +1,9 @@
+---
+TimeoutSeconds: 600
+StartAt: StartAt
+States:
+  StartAt:
+    Type: Pass
+    Parameters:
+      message: Hello World
+    End: true

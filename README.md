@@ -24,6 +24,10 @@ In your project root run:
 
 `sls deploy stepFunctionSync --name [name of the step function]` or `serverless deploy stepFunctionSync --name [name of the step function]`.
 
+or
+
+`sls deploy stepFunctionSync --id [id of the step function]` or `serverless deploy stepFunctionSync --id [id of the step function]`.
+
 ## Example
 
 ### DynamoDb Table name

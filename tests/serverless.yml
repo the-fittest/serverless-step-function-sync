@@ -66,12 +66,11 @@ functions:
 
 stepFunctions:
   stateMachines:
-    foo:
-      ${file(./stateMachines/test/foo/index.yaml)}
+    foo: ${file(./stateMachines/test/foo/index.yaml)}
+    Bar: ${file(./stateMachines/test/Bar/index.yaml)}
 
     StepMachineOne:
       name: StepMachineOne
-      id: StepMachineOne
       definition:
         StartAt: Function1
         Comment: 'Yo DDev Rocks'
@@ -101,7 +100,6 @@ stepFunctions:
 
     RangeStagingDataLoadStepFunction:
       name: RangeStagingDataLoadStepFunction
-      id: RangeStagingDataLoadStepFunction
       definition:
         StartAt: Start Range Processing for Staging DB
         States:
@@ -299,3 +297,4 @@ stepFunctions:
 
 resources:
   - ${file(./stateMachines/test/foo/resources.yaml)}
+  - ${file(./stateMachines/test/Bar/resources.yaml)}

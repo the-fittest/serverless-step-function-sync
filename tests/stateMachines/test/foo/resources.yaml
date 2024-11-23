@@ -1,4 +1,6 @@
 ---
+AWSTemplateFormatVersion: '2010-09-09'
+
 Resources:
   TestTable:
     Type: AWS::DynamoDB::Table
@@ -19,7 +21,7 @@ Resources:
       LogGroupName: /aws/vendedlogs/states/fooStateMachine${opt:stage, 'dev'}
 
   FooStateMachineExecutionRole:
-    Type: 'AWS::IAM::Role'
+    Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
         Version: '2012-10-17'

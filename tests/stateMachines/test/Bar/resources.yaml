@@ -1,0 +1,50 @@
+---
+# - ${file(.//resources.yml)}
+
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+
+  BarStateMachineLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 7
+      LogGroupName: /aws/vendedlogs/states/BarStateMachine
+
+  BarExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: states.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: CloudWatchLogsDeliveryFullAccessPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogDelivery
+                  - logs:DeleteLogDelivery
+                  - logs:DescribeLogGroups
+                  - logs:DescribeResourcePolicies
+                  - logs:GetLogDelivery
+                  - logs:ListLogDeliveries
+                  - logs:PutResourcePolicy
+                  - logs:UpdateLogDelivery
+                Resource:
+                  - '*'
+        - PolicyName: XRayAccessPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - xray:GetSamplingRules
+                  - xray:GetSamplingTargets
+                  - xray:PutTelemetryRecords
+                  - xray:PutTraceSegments
+                Resource:
+                  - '*'
+

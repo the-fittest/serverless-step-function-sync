@@ -1,0 +1,21 @@
+---
+# Bar: ${file(.//index.yml)}
+
+dependsOn:
+  - BarStateMachineLogGroup
+  - BarExecutionRole
+
+id: Bar
+retain: false
+useExactVersion: false
+type: EXPRESS
+
+role: !GetAtt BarExecutionRole.Arn
+
+loggingConfig:
+  level: ALL
+  includeExecutionData: true
+  destinations:
+    - !GetAtt BarStateMachineLogGroup.Arn
+
+definition: ${file(./stateMachines/test/Bar/definition.asl.yaml)}
