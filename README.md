@@ -22,11 +22,11 @@ plugins:
 
 In your project root run:
 
-`sls deploy stepFunctionSync --name [name of the step function]` or `serverless deploy stepFunctionSync --name [name of the step function]`.
+`sls deploy step-function --name [name of the step function]` or `serverless deploy step-function --name [name of the step function]`.
 
 or
 
-`sls deploy stepFunctionSync --id [id of the step function]` or `serverless deploy stepFunctionSync --id [id of the step function]`.
+`sls deploy step-function --id [id of the step function]` or `serverless deploy step-function --id [id of the step function]`.
 
 ## Example
 
