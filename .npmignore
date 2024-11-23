@@ -10,3 +10,4 @@ LICENSE
 .editorconfig
 .prettierignore
 README.md
+.env
