@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@aws-sdk/client-eventbridge": "^3.699.0",
     "serverless": "^3.38.0",
     "serverless-better-credentials": "^2.0.0",
     "serverless-step-functions": "^3.19.0"

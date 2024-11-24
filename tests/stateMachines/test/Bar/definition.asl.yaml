@@ -1,9 +1,29 @@
 ---
 TimeoutSeconds: 600
-StartAt: StartAt
+StartAt: Call openai
 States:
+  Call openai:
+    Type: Task
+    Resource: arn:aws:states:::http:invoke
+    QueryLanguage: JSONata
+    Arguments:
+      Authentication:
+        ConnectionArn: !GetAtt OpenApiConnection.Arn
+      Method: POST
+      ApiEndpoint: https://api.openai.com/v1/chat/completions
+      Headers:
+        Content-Type: application/json
+      RequestBody:
+        model: gpt-4o-mini
+        messages:
+          - role: user
+            content: Say this is a test!
+        temperature: 0.7
+    Output:
+      StatusText: "{% $states.result.StatusText %}"
+    Next: StartAt
   StartAt:
     Type: Pass
     Parameters:
-      message: Hello World
+      message: Hello Dude
     End: true

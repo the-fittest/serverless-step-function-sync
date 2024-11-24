@@ -1,8 +1,20 @@
 ---
-# - ${file(.//resources.yml)}
-
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
+
+  OpenApiConnection:
+    Type: AWS::Events::Connection
+    Properties:
+      AuthorizationType: API_KEY
+      AuthParameters:
+        InvocationHttpParameters:
+          HeaderParameters:
+            - IsValueSecret: false
+              Key: Content-Type
+              Value: application/json
+        ApiKeyAuthParameters:
+          ApiKeyName: Authorization
+          ApiKeyValue: Bearer foobar
 
   BarStateMachineLogGroup:
     Type: AWS::Logs::LogGroup
